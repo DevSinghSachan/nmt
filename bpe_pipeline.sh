@@ -57,10 +57,12 @@ python -m nmt.nmt \
     --dev_prefix=${OUT}/data/valid \
     --test_prefix=${OUT}/data/test
 
-mv $OUT/test/output_dev{,.bpe}
-mv $OUT/test/output_test{,.bpe}
+mv $OUT/models/output_dev{,.bpe}
+mv $OUT/models/output_test{,.bpe}
 
-cat $OUT/test/output_dev.bpe | sed -E 's/(@@ )|(@@ ?$)//g' > $OUT/test/valid.out
-cat $OUT/test/output_test.bpe | sed -E 's/(@@ )|(@@ ?$)//g' > $OUT/test/test.out
+cat $OUT/models/output_dev.bpe | sed -E 's/(@@ )|(@@ ?$)//g' > $OUT/test/valid.out
+cat $OUT/models/output_test.bpe | sed -E 's/(@@ )|(@@ ?$)//g' > $OUT/test/test.out
 
-t2t-bleu --translation=$OUT/test/test.out --reference=$OUT/data/test.${lang2} > lang2.t2t-bleu
+# Compute BLEU score
+multi-bleu $OUT/data/test.${lang2} < $OUT/test/test.out > $OUT/test/test.tc.bleu
+t2t-bleu --translation=$OUT/test/test.out --reference=$OUT/data/test.${lang2} > test.t2t-bleu
