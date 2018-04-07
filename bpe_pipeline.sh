@@ -39,7 +39,6 @@ apply_bpe -c $OUT/data/bpe-codes.${BPE_OPS} <  $VALID_TGT > $OUT/data/valid.${la
 # We dont touch the test References, No BPE on them!
 cp $TEST_TGT $OUT/data/test.${lang2}
 
-
 # Create vocabulary file for BPE
 echo -e "<unk>\n<s>\n</s>" > "${OUT}/data/vocab.bpe.${BPE_OPS}"
 cat "${OUT}/data/train.${lang1}" "${OUT}/data/train.${lang2}" | \
