@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 lang1=$1
 lang2=$2
 
@@ -65,4 +66,4 @@ cat $OUT/models/output_test.bpe | sed -E 's/(@@ )|(@@ ?$)//g' > $OUT/test/test.o
 
 # Compute BLEU score
 multi-bleu $OUT/data/test.${lang2} < $OUT/test/test.out > $OUT/test/test.tc.bleu
-t2t-bleu --translation=$OUT/test/test.out --reference=$OUT/data/test.${lang2} > test.t2t-bleu
+t2t-bleu --translation=$OUT/test/test.out --reference=$OUT/data/test.${lang2} > $OUT/test/test.t2t-bleu
