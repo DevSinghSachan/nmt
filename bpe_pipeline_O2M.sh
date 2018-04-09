@@ -48,7 +48,7 @@ echo "Applying BPE on target"
 apply_bpe -c $OUT/data/bpe-codes.${BPE_OPS} <  $TRAIN_TGT > $OUT/data/train.${lang2}-${lang3}
 apply_bpe -c $OUT/data/bpe-codes.${BPE_OPS} <  $VALID_TGT > $OUT/data/valid.${lang2}-${lang3}
 # We dont touch the test References, No BPE on them!
-cp $TEST_TGT $OUT/data/test.${lang2}
+cp $TEST_TGT $OUT/data/test.${lang2}-${lang3}
 
 # Apply BPE Coding to the languages
 apply_bpe -c $OUT/data/bpe-codes.${BPE_OPS} < ${TEST_SRC_L1_L2} > ${OUT}/data/test_${lang2}.src
