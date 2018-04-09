@@ -57,7 +57,7 @@ apply_bpe -c $OUT/data/bpe-codes.${BPE_OPS} < ${TEST_SRC_L1_L3} > ${OUT}/data/te
 
 # Create vocabulary file for BPE
 echo -e "<unk>\n<s>\n</s>" > "${OUT}/data/vocab.bpe.${BPE_OPS}"
-cat "${OUT}/data/train.${lang1}" "${OUT}/data/train.${lang2}" | \
+cat "${OUT}/data/train.${lang1}" "${OUT}/data/train.${lang2}-${lang3}" | \
     get_vocab | cut -f1 -d ' ' >> "${OUT}/data/vocab.bpe.${BPE_OPS}"
 
 # Duplicate vocab file with language suffix
