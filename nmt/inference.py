@@ -93,10 +93,10 @@ def inference(ckpt,
 
   if not hparams.attention:
     model_creator = nmt_model.Model
-  elif hparams.attention_architecture == "standard":
-    model_creator = attention_model.AttentionModel
   elif hparams.encoder_type == "gnmt" or hparams.attention_architecture in ["gnmt", "gnmt_v2"]:
     model_creator = gnmt_model.GNMTModel
+  elif hparams.attention_architecture == "standard":
+    model_creator = attention_model.AttentionModel
   else:
     raise ValueError("Unknown model architecture")
   infer_model = model_helper.create_infer_model(model_creator, hparams, scope)
